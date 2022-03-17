@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script
+      type="text/javascript"
+      src="https://assets.calendly.com/assets/external/widget.js"
+    ></script>
+    <script type="text/javascript">
+      function isCalendlyEvent(e) {
+        return e.data.event && e.data.event.indexOf("calendly") === 0;
+      }
+      window.addEventListener("message", function (e) {
+        if (isCalendlyEvent(e)) {
+          console.log(e.data);
+          window.ReactNativeWebView &&
+            window.ReactNativeWebView.postMessage(e.data.event, "*");
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <div
+      class="calendly-inline-widget"
+      data-url="https://calendly.com/puiyee/15min?back=1&month=2022-03&date=2022-03-17"
+      style="min-width: 100%; height: 100%"
+    ></div>
+  </body>
+</html>
